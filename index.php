@@ -1,18 +1,8 @@
-<?php
-	// read the directories in the shed folder
-	
-	$webfileroot = dirname(__FILE__).'/';
-	
-	$info = pathinfo($_SERVER['PHP_SELF']);
-	//echo $webfileroot;
-	$pattern = '/^\./'
-	
-	
-?>
+<?php include_once("shed_globals.php") ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
-        <title>hco.pe | idx</title>
+        <title>hco.pe | workshed</title>
         <style type="text/css">
                 
 	    body
@@ -59,7 +49,7 @@
 							if ($dh = opendir($webfileroot)) {
 								while (($file = readdir($dh)) !== false) {
 									//echo "filename: $file : filetype: " . filetype($dir . $file) . "\n";
-									if (!preg_match($pattern, $file) && $file != "index.php") {
+									if (!preg_match($dotfile_pattern, $file) && is_dir($file)) {
 										echo "<li><a href='$file'>{$file}</a></li>";
 										
 									}
